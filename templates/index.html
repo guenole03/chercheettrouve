@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html><head><title>CHERCHE&TROUVE</title></head><body>
+<h1>Bienvenue sur CHERCHE&TROUVE</h1>
+{% if session.pseudo %}
+<p>Connecté en tant que {{ session.pseudo }} | <a href="/dashboard">Mon compte</a> | <a href="/logout">Déconnexion</a></p>
+{% else %}
+<a href="/login">Connexion</a> | <a href="/register">Inscription</a>
+{% endif %}
+<h2>Produits disponibles</h2>
+<ul>
+{% for produit in produits %}
+<li><strong>{{ produit.titre }}</strong> - {{ produit.description }} (Contact: {{ produit.contact }})</li>
+{% endfor %}
+</ul>
+</body></html>

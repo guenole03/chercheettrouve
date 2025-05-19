@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><title>Mon compte</title></head><body>
+<h1>Mon compte - {{ session.pseudo }}</h1>
+<a href="/ajouter">Ajouter un produit</a> | <a href="/">Accueil</a> | <a href="/logout">Déconnexion</a>
+<h2>Mes produits</h2>
+<ul>
+{% for produit in produits %}
+<li><strong>{{ produit.titre }}</strong> - {{ produit.description }} (Contact: {{ produit.contact }})</li>
+{% endfor %}
+</ul>
+</body></html>
