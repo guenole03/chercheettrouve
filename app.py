@@ -87,3 +87,34 @@ if __name__ == '__main__':
 port = int(os.environ.get("PORT", 5000))
 app.run(host="0.0.0.0", port=port)
 Fix port for Render
+from flask import Flask, render_template, request, redirect
+
+app = Flask(__name__)
+
+# Page d'accueil
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# Page pour proposer un produit
+@app.route('/proposer', methods=['GET', 'POST'])
+def proposer():
+    if request.method == 'POST':
+        pseudo = request.form['pseudo']
+        produit = request.form['produit']
+        contact = request.form['contact']
+        print(f"Nouveau produit : {produit} par {pseudo}, contact : {contact}")
+        return redirect('/')
+    return render_template('proposer.html')
+
+# Page Mon compte
+@app.route('/compte')
+def compte():
+    return render_template('compte.html')
+
+
+# Démarrage de l'app avec Render
+if __name__ == '__main__':
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
